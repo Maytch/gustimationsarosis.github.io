@@ -1,67 +1,575 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>WotLK Raid Comp Selector Tool</title>
 
     <script type="text/javascript" src="https://wotlk.evowow.com/static/widgets/power.js"></script>
-    <script>var aowow_tooltips = { "colorlinks": false, "iconizelinks": true, "renamelinks": false }</script>
+    <script>
+        var aowow_tooltips = {
+            "colorlinks": false,
+            "iconizelinks": true,
+            "renamelinks": false
+        }
+    </script>
 </head>
+
 <body>
     <div class="row divTable">
-        <table id="talentTable0">
-        </table>
-        <table id="talentTable1">
-        </table>
-        <table id="talentTable2">
-        </table>
+        <div id="talentTable0">
+        </div>
+        <div id="talentTable1">
+        </div>
+        <div id="talentTable2">
+        </div>
     </div>
 
+    <div id="talentTooltip">
+        <div class="talentName">Undefined</div>
+        <div class="talentRank">Rank 0</div>
+        <div class="talentHeaderLeft">Instant</div>
+        <div class="talentHeaderRight">2min cooldown</div>
+        <div class="talentText">Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat.</div>
+        <div class="talentStatus">Required 25 skill points in blood<br>Requires 5 points in Dark Conviction</div>
+    </div>
 </body>
+
 </html>
 
 <style>
     .talentTable {
         background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding: 20px 40px;
     }
-
+    
     .anon {
         background: none !important;
     }
-
-    .td {
-        padding-left: 5px;
-        padding-left: 5px;
+    
+    .talentRow {
+        width: 100%;
     }
-
+    
+    .talentContainer {
+        padding: 10px;
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+    }
+    
     .divTable {
         display: flex;
     }
+    
+    .talentAnchor {
+        position: relative;
+    }
+    
+    .talentImg {
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .talentImg.locked {
+        filter: grayscale(100%);
+    }
 </style>
-
-
 
 <script>
     var classTypes = {
-        dk: {
+        deathknight: {
             blood: [
-                [[49483, "url('TalentImages//deathknight//Blood//Butchery-off.jpg')"],
-                    [49491, "url('TalentImages//deathknight//Blood//Subversion-off.jpg')"],
-                    [49501, "url('TalentImages//deathknight//Blood//BladeBarrier-off.jpg')"],
-                    null],
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Increases the critical strike chance of Blood Strike, Scourge Strike, Heart Strike and Obliterate by 3%, and reduces threat generated while in Blood or Unholy Presence by 8%.."
+                            },
+                            {
+                                headers: [],
+                                text: "Increases the critical strike chance of Blood Strike, Scourge Strike, Heart Strike and Obliterate by 6%, and reduces threat generated while in Blood or Unholy Presence by 16%."
+                            },
+                            {
+                                headers: [],
+                                text: "Increases the critical strike chance of Blood Strike, Scourge Strike, Heart Strike and Obliterate by 9%, and reduces threat generated while in Blood or Unholy Presence by 25%."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49483,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever your Blood Runes are on cooldown, you gain the Blade Barrier effect, which decreases damage taken by 1% for the next 10 sec."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever your Blood Runes are on cooldown, you gain the Blade Barrier effect, which decreases damage taken by 2% for the next 10 sec."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever your Blood Runes are on cooldown, you gain the Blade Barrier effect, which decreases damage taken by 3% for the next 10 sec."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever your Blood Runes are on cooldown, you gain the Blade Barrier effect, which decreases damage taken by 4% for the next 10 sec."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever your Blood Runes are on cooldown, you gain the Blade Barrier effect, which decreases damage taken by 5% for the next 10 sec."
+                            }
+                        ]
+                    },
+                    null
+                ],
 
-                [49483, 0, 0, null],
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
 
-                [0, 0, 0, null],
-                [0, 0, 0, null],
-                [0, null, 0, 0],
-                [0, null, 0, 0],
-                [null, 0, 0, null],
-                [0, 0, 0, null],
-                [0, 0, 0, null],
-                [0, 0, 0, null],
-                [null, 0, null, null],
-                [null, 0, null, null],
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
+
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null,
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    }
+                ],
+
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null,
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    }
+                ],
+
+                [
+                    null,
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
+
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
+
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
+
+                [
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    {
+                        id: 49491,
+                        name: null,
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null
+                ],
+
+                [
+                    null,
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null,
+                    null,
+                    null
+                ],
+
+                [
+                    null,
+                    {
+                        id: 49483,
+                        name: "Butchery",
+                        lockRules: [],
+                        ranks: [
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 10 runic power.  In addition, you generate 1 runic power per 5 sec while in combat."
+                            },
+                            {
+                                headers: [],
+                                text: "Whenever you kill an enemy that grants experience or honor, you generate up to 20 runic power.  In addition, you generate 2 runic power per 5 sec while in combat."
+                            }
+                        ]
+                    },
+                    null,
+                    null,
+                    null
+                ],
 
             ],
             frost: [
@@ -92,139 +600,130 @@
                 [0, 0, 0, null],
                 [null, 0, null, null],
                 [null, 0, null, null],
-            ],
-
-            background: [
-                ["//deathknight//Blood//background.jpg"],
-                ["//deathknight//Frost//background.jpg"],
-                ["//deathknight//Unholy//background.jpg"]
             ]
         }
     };
 
-    console.log(classTypes.dk.blood);
-    var test = "url('TalentImages" + classTypes.dk.background[0] + "')";
-    console.log(test);
+    function build(no, className, specName) {
+        var specData = classTypes[className][specName];
+        var baseUrl = './/Images//Talents//' + className + "//" + specName;
+        var talentGrid = document.getElementById("talentTable" + no);
 
+        talentGrid.style.backgroundImage = "url('" + baseUrl + "//background.jpg')";
+        talentGrid
+        talentGrid.classList.add("talentTable");
 
-    function build(no, data, background) {
-        var playerGrid = document.getElementById("talentTable" + no);
-
-        playerGrid.style.backgroundImage = "url('TalentImages" + background + "')";
-        playerGrid.classList.add("talentTable");
-
-        for (var i = 0; i < 11; i++) {
-            var colum = playerGrid.appendChild(document.createElement('tr'));
+        for (var i = 0; i < specData.length; i++) {
+            var row = talentGrid.appendChild(document.createElement('div'));
+            row.classList.add("talentRow");
 
             for (var j = 0; j < 4; j++) {
-                var row = colum.appendChild(document.createElement('td'));
-                row.classList.add("td");
-                if (data[i][j] !== null) {
-                    var talentImg = document.createElement('a');
-                    talentImg.setAttribute('href', '#');
-                    talentImg.setAttribute('rel', 'spell=' + data[i][j]);
-                    talentImg.classList.add("anon");
+                var talentData = specData[i][j];
 
-                    var toolTip = talentImg.appendChild(document.createElement('div'));
-                    var test = data[i][j][1];
-                    if (data[i][j][1] != null) {
-                        toolTip.style.backgroundImage = data[i][j][1];
+                var talent = row.appendChild(document.createElement('div'));
+                talent.classList.add("talentContainer");
 
-                    }
-                    else
-                        toolTip.style.backgroundImage = "url('TalentImages//deathknight//Blood//Butchery-off.jpg')";
+                if (talentData == null) continue;
 
-                    var test = data[i][j][1];
+                var talentAnchor = talent.appendChild(document.createElement('a'));
+                talentAnchor.setAttribute('href', '#');
+                talentAnchor.setAttribute('rel', 'spell=' + talentData.id + '&rank=1');
+                talentAnchor.classList.add("talentAnchor");
 
-                    toolTip.classList.add("talentTable");
-                    toolTip.style.width = "44px";
-                    toolTip.style.height = "46px";
-                    row.appendChild(talentImg);
+                var talentImg = talentAnchor.appendChild(document.createElement('div'));
+                talentImg.classList.add("talentImg");
+                if (talentData.lockRules.length > 0 || i > 0) talentImg.classList.add("locked");
 
+                if (talentData.name != null) {
+                    talentImg.style.backgroundImage = "url('" + baseUrl + "//" + talentData.name.toLowerCase() + ".jpg";
+                } else {
+                    talentImg.style.backgroundImage = "url('" + baseUrl + "//unknown.jpg";
                 }
 
+                var talentRanks = talentAnchor.appendChild(document.createElement('div'));
+                talentRanks.classList.add("talentRanks");
+                talentRanks.innerText = "0/" + talentData.ranks.length;
             }
         }
     }
-    build(0, classTypes.dk.blood, classTypes.dk.background[0]);
+
+    build(0, "deathknight", "blood");
+    /*build(0, classTypes.dk.blood, classTypes.dk.background[0]);
     build(1, classTypes.dk.frost, classTypes.dk.background[1]);
     build(2, classTypes.dk.unholy, classTypes.dk.background[2]);
-    var table =
-        [
-            Druid = {
-                Balance: [
-                    {
-                        Row: [{
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+    var table = [
+        Druid = {
+            Balance: [{
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }]
-                    }],
-                Feral: [
-                    {
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }]
+            }],
+            Feral: [{
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }],
-                        Row: [{
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-                            1: null,
-                            2: "Starlight_Wrath",
-                            3: "Genesis",
-                            4: null
+                }],
+                Row: [{
 
-                        }]
-                    }]
-            }
-        ];
+                    1: null,
+                    2: "Starlight_Wrath",
+                    3: "Genesis",
+                    4: null
 
-    //console.log(table);
+                }]
+            }]
+        }
+    ];
 
+    //console.log(table);*/
 </script>
